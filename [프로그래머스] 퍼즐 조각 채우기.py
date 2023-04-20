@@ -47,10 +47,10 @@ def solution(game_board, table):
             temp = []
             maxy = len(rotate_arr)-1
             maxx = len(rotate_arr[0])-1
-            for y in range(0,maxx+1):
+            for x in range(0,maxx+1):
                 temp2 = []
-                for x in range(maxy,-1,-1):
-                    temp2.append(rotate_arr[x][y])
+                for y in range(maxy,-1,-1):
+                    temp2.append(rotate_arr[y][x])
                 temp.append(temp2)
             rotate_arr = temp.copy() # 위 과정을 거치면 시계방향으로 90도 회전한 배열이 나옵니다.
             result.append(rotate_arr)
@@ -61,9 +61,9 @@ def solution(game_board, table):
     for y in range(N):
         for x in range(N):
             if game_board[y][x]==1:
-                puzzle.append(bfs(y,x,0))
+                puzzle.append(bfs(y,x,0))                    # 빈칸 배열 저장
             if table[y][x]==1:
-                in_table[len(in_table)] = rotate(bfs(y,x,1))
+                in_table[len(in_table)] = rotate(bfs(y,x,1)) # 퍼즐+회전한 퍼즐의 배열을 얻습니다.
 
     for p in puzzle:
         for key in in_table:
